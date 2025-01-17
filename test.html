@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+            /* text-align: center; */
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 70px;
+            background-color: black;
+        }
+
+        h1 {
+            color: #ff4081;
+            font-size: 2.5rem;
+            /* margin-top: 50px; */
+            animation: fadeIn 3s ease-in-out;
+        }
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 90px;
+            background-color: #ff4081;
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite;
+        }
+        .balloon:nth-child(1) {
+            left: 20%;
+            animation-duration: 4s;
+        }
+        .balloon:nth-child(2) {
+            left: 40%;
+            animation-duration: 5s;
+        }
+        .balloon:nth-child(3) {
+            left: 60%;
+            animation-duration: 6s;
+        }
+        .balloon:nth-child(4) {
+            left: 80%;
+            animation-duration: 4.5s;
+        }
+        .cake {
+            width: 200px;
+            height: 200px;
+            background-color: #ffcc00;
+            border-radius: 50%;
+            position: relative;
+            margin: 50px auto;
+            animation: popCake 5s ease-in-out infinite;
+        }
+        .cake::before {
+            content: '🎂';
+            font-size: 4rem;
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .surprise{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .surprise-btn{
+            background-color: #ff4081;
+            border: none;
+            border-radius: 10px;
+            width: 100px;
+            padding: 10px;
+            transition: all 0.2s;
+        }
+
+        .surprise-btn:hover{
+            background-color: #ff8a65;
+        }
+
+        /* Balloon GIF for Snowflakes */
+        .snowflake {
+            position: absolute;
+            width: 60px; /* Adjust size */
+            height: 90px;
+            background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2a31faed-ce70-47ba-8ea5-a3f44c5ecfe0/dayk30o-98f6c16f-32c3-4b65-bb17-a54e93f46f0d.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzJhMzFmYWVkLWNlNzAtNDdiYS04ZWE1LWEzZjQ0YzVlY2ZlMFwvZGF5azMwby05OGY2YzE2Zi0zMmMzLTRiNjUtYmIxNy1hNTRlOTNmNDZmMGQuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.tMqWQpaQFMPMsldiokPGZuS9bMl7hnr7xKvPuGKYcn8'); /* Balloon GIF URL */
+            background-size: cover;
+            animation: snow 10s linear infinite;
+        }
+        @keyframes float {
+            0% {
+                top: 100%;
+                transform: translateX(0);
+            }
+            50% {
+                top: 20%;
+                transform: translateX(30px);
+            }
+            100% {
+                top: 100%;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes popCake {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+        @keyframes snow {
+            100% {
+                top: -10%;
+                transform: translateX(0);
+            }
+            0% {
+                top: 100%;
+                transform: translateX(200px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Happy Birthday!</h1>
+    </div>
+
+    <div class="cake"></div>
+
+    <div class="surprise">
+        <button class="surprise-btn">Click me</button>
+    </div>
+
+    <!-- Snowflakes with Balloon GIF -->
+    <!-- <div class="snowflake" style="left: 10%;"></div>
+    <div class="snowflake" style="left: 30%;"></div>
+    <div class="snowflake" style="left: 50%;"></div>
+    <div class="snowflake" style="left: 70%;"></div> -->
+    <!-- <div class="snowflake" style="left: 90%;"></div> -->
+
+    <script>
+        // Add multiple balloon GIFs dynamically
+        function createBalloons() {
+            const balloonContainer = document.body;
+            for (let i = 0; i < 5; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.style.left = `${Math.random() * 100}%`;
+                snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`; // Random fall time
+                snowflake.style.animationDelay = `${Math.random() * 5}s`; // Random start delay
+                balloonContainer.appendChild(snowflake);
+            }
+        }
+        createBalloons();
+    </script>
+</body>
+</html>

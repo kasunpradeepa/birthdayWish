@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Surprise!</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      /* align-items: center; */
+      justify-content: center;
+      background: linear-gradient(135deg, #6a11cb, #2575fc, #ff9a9e, #fbc02d);
+      background-size: 400% 400%;
+      animation: gradient-animation 15s ease infinite;
+      color: white;
+      font-family: 'Dancing Script', cursive;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    @keyframes gradient-animation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      width: 100%;
+      /* border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); */
+    }
+
+    .title {
+      font-size: 3rem;
+      color: #FFD700;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+      animation: bounce 2s infinite;
+    }
+
+     /* Buttons */
+     .buttons {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin: 10px;
+      /* gap: 10px; */
+    }
+
+    .surprise-button{
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .surprise-button:hover{
+      background-color: #ff4a3d;
+    }
+
+    .main-container {
+      display: flex;
+      width: 100%;
+      height: 400px;
+    }
+
+    .sub-container-1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 180px;
+      /* background-color: #ff4a3d; */
+    }
+
+    .sub-container-2 {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      /* background-color: #98ff3d; */
+    }
+
+    .sub-container-3 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 180px;
+      /* background-color: #3d40ff; */
+    }
+
+    .main-img {
+      margin-top: 20px;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      animation: popImg 3s linear infinite;
+    }
+
+    @keyframes popImg {
+      0% {
+        scale: 1;
+      }
+      50% {
+        scale: 1.1;
+      }
+      100% {
+        scale: 1;
+      }
+    }
+
+    .animation-img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      opacity: 0; /* Initially hidden */
+      scale: 0;    /* Initially scaled down */
+      transition: opacity 1s ease, scale 1s ease; /* Smooth transition */
+      border: 3px solid #fff;
+      padding: 3px;
+    }
+
+    .age{
+      font-size: 50px;
+      font-family: cursive;
+      color: #FFFACD;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+
+    }
+
+    .topic{
+      font-size: 30px;
+      font-family: cursive;
+      margin-top: -30px;
+      color: #FFFACD;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    @media (max-width: 500px) {
+      .title {
+        font-size: 2rem;
+      }
+
+      .main-img {
+        width: 130px;
+        height: 130px;
+      }
+      .animation-img{
+        width: 70px;
+        height: 70px;
+      }
+      .age{
+        font-size: 40px;
+      }
+      .topic{
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Happy Birthday</h1>
+    <div class="main-container">
+      <div class="sub-container-1">
+        <img src="images/img1.jpg" alt="Image 1" class="animation-img">
+        <img src="images/img2.jpg" alt="Image 2" class="animation-img">
+      </div>
+      <div class="sub-container-2">
+        <img src="images/cake.png" alt="Cake" class="main-img">
+        <h2 class="age">20<sup>th</sup></h2>
+        <h3 class="topic">Birthday Celebration</h3>
+      </div>
+      <div class="sub-container-3">
+        <img src="images/img3.jpg" alt="Image 3" class="animation-img">
+        <img src="images/img6.jpg" alt="Image 4" class="animation-img">
+      </div>
+    </div>
+    <div class="buttons">
+      <button class="surprise-button">Surprise!</button>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript for Showing Images with Animation
+    const animationImages = document.querySelectorAll('.animation-img');
+    let currentAnimationIndex = 0;
+
+    // Function to show the next image with animation
+    function animateImages() {
+      // Hide all images
+      animationImages.forEach((img) => {
+        img.style.opacity = '0'; // Hide image
+        img.style.scale = '0';   // Reset scale
+      });
+
+      // Show the current image
+      const currentImg = animationImages[currentAnimationIndex];
+      currentImg.style.opacity = '1'; // Make visible
+      currentImg.style.scale = '1';   // Apply scale effect
+
+      // Move to the next image
+      currentAnimationIndex = (currentAnimationIndex + 1) % animationImages.length;
+    }
+
+    // Start cycling images with animation
+    setInterval(animateImages, 4000); // Adjust interval as needed
+
+    // Initialize by showing the first image
+    animateImages();
+
+    // JavaScript for Surprise Button
+    const surpriseButton = document.querySelector('.surprise-button');
+    const container = document.querySelector('.container');
+
+    surpriseButton.addEventListener('click', () => {
+      window.location.href = 'surprise.html';
+      const confettiSettings = { particleCount: 100, spread: 70, origin: { y: 0.6 } };
+      const confetti = new (window.ConfettiGenerator || window.confetti)(confettiSettings);
+      confetti();
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</body>
+</html>

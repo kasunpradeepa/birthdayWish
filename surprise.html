@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Surprise!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      /* height: 100vh; */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-top: 100px;
+      background: linear-gradient(135deg, #6a11cb, #2575fc, #ff9a9e, #fbc02d);
+      background-size: 400% 400%;
+      animation: gradient-animation 15s ease infinite;
+      color: white;
+      font-family: 'Dancing Script', cursive;
+      /* text-align: center; */
+      /* overflow: hidden; */
+    }
+
+    @keyframes gradient-animation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .container {
+        position: fixed;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      width: 100%;
+      background-color: transparent;
+      top: 0;
+      /* border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); */
+    }
+
+    .title {
+      font-size: 3rem;
+      color: #fff8cd;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+      margin-top: 40px;
+      animation: bounce 2s infinite;
+    }
+
+    .back-icon{
+      position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        width: 100%;
+    }
+
+    .fa-solid{
+        font-size: 30px;
+        margin: 15px;
+    }
+
+    .main-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 500px;
+    }
+
+    .content{
+        position: relative;
+        width: 300px;
+        height: 500px;
+        /* background-color: aquamarine; */
+    }
+
+    .content img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        animation: changeIMG 10s ease-in infinite;
+    }
+
+    .content img:nth-child(0){
+        animation-delay: 0s;
+    }
+
+    .content img:nth-child(1){
+        animation-delay: 5s;
+    }
+
+    @keyframes changeIMG{
+        0%{
+            opacity: 0;
+        }
+        50%{
+            opacity: 1;
+        }
+        100%{
+            opacity: 0;
+        }
+    }
+
+    .dark-bg{
+        position: absolute;
+        display: flex;
+        align-items: center;
+        /* justify-content: center; */
+        flex-direction: column;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.414);
+    }
+
+    .dark-bg h3{
+      font-size: 20px;
+      color: #fff;
+      font-weight: normal;
+      text-align: center;
+    }
+    
+    .dark-bg-content{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .dark-bg-content p{
+      color: #ffffffe6;
+      width: 250px;
+      text-align: center;
+      line-height: 25px;
+      font-size: 17px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      /* gap: 10px; */
+      margin-top: 15px;
+    }
+
+    .surprise-button{
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .surprise-button:hover{
+      background-color: #ff4a3d;
+    }
+
+    #text-writer {
+      width: 100%;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-weight: 600;
+      font-size: 22px;
+      margin: 20px 0;
+      color: #FFD700;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #333; /* Cursor effect */
+      animation: blink-caret 0.75s step-end infinite;
+    }
+
+    
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: #333; }
+    }
+
+    .heart{
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    .snowflake {
+            position: absolute;
+            width: 50px; /* Adjust size */
+            height: 70px;
+            background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2a31faed-ce70-47ba-8ea5-a3f44c5ecfe0/dayk30o-98f6c16f-32c3-4b65-bb17-a54e93f46f0d.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzJhMzFmYWVkLWNlNzAtNDdiYS04ZWE1LWEzZjQ0YzVlY2ZlMFwvZGF5azMwby05OGY2YzE2Zi0zMmMzLTRiNjUtYmIxNy1hNTRlOTNmNDZmMGQuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.tMqWQpaQFMPMsldiokPGZuS9bMl7hnr7xKvPuGKYcn8'); /* Balloon GIF URL */
+            background-size: cover;
+            animation: snow 10s linear infinite;
+          }
+
+          @keyframes snow {
+                  100% {
+                      top: -10%;
+                      transform: translateX(0);
+                  }
+                  0% {
+                      top: 100%;
+                      transform: translateX(200px);
+                  }
+              }
+
+
+          .hidden{
+            display: none;
+          }
+
+
+           /* Heart animation */
+    @keyframes floatHearts {
+      0% {
+        transform: translateY(100vh) translateX(-50%); /* Start at the bottom */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(-50%); /* Move to the top */
+        opacity: 0;
+      }
+    }
+
+    .heart {
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      left: 50%;
+      font-size: 22px;
+      color: red;
+      animation: floatHearts 5s linear infinite;
+      user-select: none;
+      pointer-events: none;
+    }
+
+
+          @media (max-width: 600px) {
+      .title {
+        font-size: 2rem;
+      }
+
+      .main-img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+      <div class="back-icon">
+          <i class="fa-solid fa-arrow-left"></i>
+      </div>
+    <h1 class="title">🎉 Surprise! 🎉</h1>
+        <!-- <p class="message">Wishing you an amazing birthday filled with joy and laughter!</p> -->
+  </div>
+
+  <div id="text-writer"></div>
+
+  <div class="main-container">
+    <div class="content">
+        <img src="images/img7.jpg" alt="">
+        <img src="images/img8.jpg" alt="">
+        <div class="dark-bg">
+            <h3>🌹Happy Birthday, My Love!🌹</h3>
+            <div class="dark-bg-content">
+
+              <p>You make my world brighter with your smile and warmer 
+                with your love. I'm so grateful to have you by my side, 
+                sharing dreams and laughter. May your day be as beautiful and magical as you are.</p>
+
+              <p>Forever yours, ❤️<br>Kasun</p>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <button class="surprise-button hidden" id="stop-button" onclick="reload()">Stop</button>
+      <button class="surprise-button" id="play-button" onclick="wish()">Play</button>
+    </div>
+    <audio id="audio" src="images/wish.mp3"></audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script>
+      const backIcon = document.querySelector('.fa-arrow-left');
+      backIcon.addEventListener('click', () =>{
+          window.location.href = 'index.html';
+      })
+          const confettiSettings = { particleCount: 300, spread: 80, origin: { y: 0.6 } };
+          const confetti = new (window.ConfettiGenerator || window.confetti)(confettiSettings);
+        //   confetti();
+  
+      function wish(){
+        const textWriter = document.getElementById('text-writer');
+        const audio = document.getElementById('audio');
+        
+        const lines = [
+          "Happy Birthday to you",
+          "Happy Birthday to you",
+          "Happy Birthday dear Malki",
+          "Happy Birthday to you" ];
+
+        let lineIndex = 0;
+        let charIndex = 0;
+        let round = 0; // Track the number of rounds
+        const totalRounds = 2; // Total rounds to run
+        const roundDuration = 16000; // 13 seconds per round
+
+        
+
+        function typeWriter() {
+          if (lineIndex < lines.length) {
+            if (charIndex < lines[lineIndex].length) {
+              // Add the next character
+              textWriter.innerHTML += lines[lineIndex].charAt(charIndex);
+              charIndex++;
+              setTimeout(typeWriter, 135); // Typing speed (100ms per character)
+            } else {
+              // Move to the next line
+              textWriter.innerHTML += '<br>'; // Add a new line
+              lineIndex++;
+              charIndex = 0;
+              setTimeout(typeWriter, 575); // Delay before starting the next line
+            }
+          } else if (round < totalRounds - 1) {
+            // Reset for the next round
+            lineIndex = 0;
+            charIndex = 0;
+            textWriter.innerHTML = ''; // Clear the text for the next round
+            round++;
+            setTimeout(typeWriter, 0); // Start the next round immediately
+          }
+        }
+
+        // Start the typing effect
+        typeWriter();
+        audio.play();
+
+        // Stop the effect after 26 seconds (2 rounds of 13 seconds each)
+        setTimeout(() => {
+          textWriter.innerHTML = "K❤️M"; // Final message
+          textWriter.style.borderRight = "none"; // Remove the cursor
+        }, totalRounds * roundDuration); // 26 seconds
+    
+      }
+
+      const playButton = document.getElementById('play-button');
+      const stopButton = document.getElementById('stop-button');
+
+      playButton.addEventListener('click', () =>{
+
+            stopButton.classList.remove('hidden');
+            playButton.classList.add('hidden');
+
+            function createHearts() {
+        const numHearts = 15; // Number of hearts to create
+        const heartContainer = document.createElement('div');
+        heartContainer.style.position = 'fixed';
+        heartContainer.style.top = '0';
+        heartContainer.style.left = '0';
+        heartContainer.style.width = '100%';
+        heartContainer.style.height = '100%';
+        heartContainer.style.pointerEvents = 'none';
+        document.body.appendChild(heartContainer);
+
+        for (let i = 0; i < numHearts; i++) {
+          const heart = document.createElement('div');
+          heart.innerHTML = '❤️';
+          heart.classList.add('heart');
+          heart.style.left = `${Math.random() * 100}%`; // Random horizontal position
+          heart.style.animationDuration = `${Math.random() * 3 + 2}s`; // Random speed
+          heartContainer.appendChild(heart);
+        }
+      }
+
+      // Start creating hearts
+      createHearts();
+
+        })
+        // createBalloons();
+
+
+        function reload() {
+            window.location.reload();
+        }
+  </script>
+</body>
+</html>
