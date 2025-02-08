@@ -84,28 +84,39 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        animation: changeIMG 10s ease-in infinite;
-    }
-
-    .content img:nth-child(0){
-        animation-delay: 0s;
+        opacity: 0;
+        animation: changeIMG 21s ease-in infinite;
     }
 
     .content img:nth-child(1){
-        animation-delay: 5s;
+        animation-delay: 0s;
     }
 
-    @keyframes changeIMG{
-        0%{
-            opacity: 0;
-        }
-        50%{
-            opacity: 1;
-        }
-        100%{
-            opacity: 0;
-        }
+    .content img:nth-child(2){
+        animation-delay: 7s;
     }
+
+    .content img:nth-child(3){
+        animation-delay: 14s;
+    }
+
+    @keyframes changeIMG {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    33.33% {
+        opacity: 1;
+    }
+    43.33% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
 
     .dark-bg{
         position: absolute;
@@ -154,7 +165,7 @@
     .surprise-button{
       padding: 10px 20px;
       font-size: 1.2rem;
-      background-color: #ff6f61;
+      background-color: #fa2f1d;
       color: white;
       border: none;
       border-radius: 5px;
@@ -271,6 +282,7 @@
     <div class="content">
         <img src="images/img7.jpg" alt="">
         <img src="images/img8.jpg" alt="">
+        <img src="images/img9.jpg" alt="">
         <div class="dark-bg">
             <h3>🌹Happy Birthday, My Love!🌹</h3>
             <div class="dark-bg-content">
@@ -313,8 +325,8 @@
         let lineIndex = 0;
         let charIndex = 0;
         let round = 0; // Track the number of rounds
-        const totalRounds = 2; // Total rounds to run
-        const roundDuration = 16000; // 13 seconds per round
+        const totalRounds = 1; // Total rounds to run
+        const roundDuration = 21000; // 13 seconds per round
 
         
 
@@ -348,7 +360,7 @@
 
         // Stop the effect after 26 seconds (2 rounds of 13 seconds each)
         setTimeout(() => {
-          textWriter.innerHTML = "K❤️M"; // Final message
+          textWriter.innerHTML = "I ❤️ U, Sudu <br> K❤️M"; // Final message
           textWriter.style.borderRight = "none"; // Remove the cursor
         }, totalRounds * roundDuration); // 26 seconds
     
